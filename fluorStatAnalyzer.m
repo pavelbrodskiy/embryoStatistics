@@ -28,26 +28,38 @@ dateString = datestr(now);
 dateString (dateString == ':') = '.';
 mapScale = 3;
 
-segmentListMaster = {'Head';'Amnioserosa';'Ventral Segments T1 through A1'; ...
-    'Ventral Segments A2 through a5';'Ventral Segments A6 through A9';'C5'; ...
-    'dorsal T1';'dorsal T2';'dorsal T3';'dorsal A1';'dorsal A2';'dorsal A3'; ...
-    'dorsal A4';'dorsal A5'};
-
-%fbMAT = {''};
-fbMAT = {' front'; ' back'};
+% segmentListMaster = {'Head';'Amnioserosa';'Ventral Segments T1 through A1'; ...
+%     'Ventral Segments A2 through a5';'Ventral Segments A6 through A9';'C5'; ...
+%     'dorsal T1';'dorsal T2';'dorsal T3';'dorsal A1';'dorsal A2';'dorsal A3'; ...
+%     'dorsal A4';'dorsal A5'};
+% 
+% %fbMAT = {''};
+% fbMAT = {' front'; ' back'};
+% 
+% APMAT = {'Anterior'; 'Posterior'};
+% segmentListMaster = {'Head', 'Amnioserosa'};
 
 APMAT = {'Anterior'; 'Posterior'};
-segmentListMaster = {'Head', 'Amnioserosa'};
-
-for segA = 1:10
+segmentListMaster = {};
+for segA = 1:12
     for AP = 1:2
-        for fb = 1:2
+        %for fb = 1:2
         %tempSTR = ['A' int2str(segA) ' - ' APMAT{AP} fbMAT{fb}]
-        tempSTR = ['Seg' int2str(segA) ' - ' APMAT{AP} fbMAT{fb}];
+        tempSTR = ['Seg' int2str(segA) ' - ' APMAT{AP}];
         segmentListMaster = [segmentListMaster {tempSTR}];
-        end
+        %end
     end
 end
+
+% for segA = 1:10
+%     for AP = 1:2
+%         for fb = 1:2
+%         %tempSTR = ['A' int2str(segA) ' - ' APMAT{AP} fbMAT{fb}]
+%         tempSTR = ['Seg' int2str(segA) ' - ' APMAT{AP} fbMAT{fb}];
+%         segmentListMaster = [segmentListMaster {tempSTR}];
+%         end
+%     end
+% end
 
 
 %segmentListMaster = {'Head';'Body'};
