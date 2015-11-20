@@ -3,9 +3,8 @@
 
 clear cells
 
-% Inputs
-%inputfolder = 'Embryo 1 cycE PH3 stage 13 7Nov14\';
-inputfolder = 'Data\';
+%% Inputs
+inputfolder = ['Data' filesep];
 %pixelRatio = 2.919708029; % 2.919708029 => 40x
 pixelRatio = 4.280821918; % 4.280821918 => 60x
 %mapName = 'Embryo 1 cycE PH3 Stage 13 7Nov14 modified.png';
@@ -177,26 +176,26 @@ segmentBelongedTo = cell(cellsNumber, 1);
 figureHandle = imshow(compositeMap);
 
 x = 1; y = 1; notDone = true; segmentList = segmentListMaster;
-% identificationArray = cell(1, cellsNumber);
-% 
-% 
-% while notDone && ~isempty(segmentList)
-%     
-%     [selection, notDone] = listdlg('ListString',segmentList,'SelectionMode','single','PromptString','Name of Current Segment');
-%     currentSegment = segmentList{selection};
-%     segmentList(selection) = [];
-%     
-%     if notDone
-%         [x,y] = ginput();
-%         [ axyp, ~, ~ ] = polygeom( x, y );
-%         compositeMap = insertText(compositeMap, axyp(2:3), currentSegment, 'FontSize', 18, 'TextColor', ...
-%             [255 255 255], 'AnchorPoint', 'Center', 'BoxOpacity', 0);
-%         figureHandle = imshow(compositeMap);
-%         in = inpoly(Centroid, [x y]);
-%         identificationArray(in) = {currentSegment};
-%     end
-%     
-% end
+identificationArray = cell(1, cellsNumber);
+
+
+while notDone && ~isempty(segmentList)
+    
+    [selection, notDone] = listdlg('ListString',segmentList,'SelectionMode','single','PromptString','Name of Current Segment');
+    currentSegment = segmentList{selection};
+    segmentList(selection) = [];
+    
+    if notDone
+        [x,y] = ginput();
+        [ axyp, ~, ~ ] = polygeom( x, y );
+        compositeMap = insertText(compositeMap, axyp(2:3), currentSegment, 'FontSize', 18, 'TextColor', ...
+            [255 255 255], 'AnchorPoint', 'Center', 'BoxOpacity', 0);
+        figureHandle = imshow(compositeMap);
+        in = inpoly(Centroid, [x y]);
+        identificationArray(in) = {currentSegment};
+    end
+    
+end
 
 unidentified = double(cellfun('isempty',identificationArray));
 unidentified = unidentified .* double(1:cellsNumber);
